@@ -1,10 +1,26 @@
 workflows:
-  build_ios:
-    name: Build iOS
+  ios-build:
+    name: iOS Build
+    environment:
+      react_native_version: 0.64.2
+
     scripts:
-      - npm install -g eas-cli
-      - npm install
-      - echo -e "machine api.expo.dev\n  login $nithinnv\n  password $thestudent" > ~/.netrc
-      - eas build -p ios
-    artifacts:
-      - eas-build/**/*.ipa
+      - name: Install dependencies
+        script: |
+          npm install
+
+      - name: Set up Expo credentials
+        script: |
+          echo "EXPO_USERNAME=<nithinnv>" >> $FCI_BUILD_DIR/.env
+          echo "EXPO_PASSWORD=<thestudent>" >> $FCI_BUILD_DIR/.env
+
+      - name: Build iOS app
+        script: |
+          eas build -p ios
+
+      # Add more build steps as needed
+
+    cache:
+      key: v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum ".env" }}
+      directories:
+        - ~/.npm
