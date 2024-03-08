@@ -1,12 +1,10 @@
 workflows:
   build_ios:
     name: Build iOS
-    environment:
-      EXPO_CLI_PASSWORD: thestudent
     scripts:
       - npm install -g eas-cli
       - npm install
-      - eas login --username nithinnv --password thestudent
+      - echo -e "nithinnv\nthestudent" | eas login
       - eas build -p ios
     artifacts:
       - eas-build/**/*.ipa
