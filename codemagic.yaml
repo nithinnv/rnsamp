@@ -1,0 +1,13 @@
+workflows:
+  build:
+    name: Build
+    environment:
+      node: latest
+    scripts:
+      - npm install -g expo-cli
+      - npm install
+      - expo build:android
+      - expo build:ios
+    artifacts:
+      - build/**/*.apk
+      - build/**/*.ipa
