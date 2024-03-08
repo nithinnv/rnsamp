@@ -1,13 +1,9 @@
 workflows:
-  build:
-    name: Build
-    environment:
-      node: latest
+  build_ios:
+    name: Build iOS
     scripts:
-      - npm install -g expo-cli
+      - npm install -g eas-cli
       - npm install
-      - expo build:android
-      - expo build:ios
+      - eas build -p ios
     artifacts:
-      - build/**/*.apk
-      - build/**/*.ipa
+      - eas-build/**/*.ipa
