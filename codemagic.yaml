@@ -2,7 +2,7 @@ workflows:
   ios-build:
     name: iOS Build
     environment:
-      react_native_version: 0.64.2
+      flutter: none
 
     scripts:
       - name: Install dependencies
@@ -11,8 +11,8 @@ workflows:
 
       - name: Set up Expo credentials
         script: |
-          echo "EXPO_USERNAME=<nithinnv>" >> $FCI_BUILD_DIR/.env
-          echo "EXPO_PASSWORD=<thestudent>" >> $FCI_BUILD_DIR/.env
+          echo "EXPO_USERNAME=<your_expo_username>" >> $FCI_BUILD_DIR/.env
+          echo "EXPO_PASSWORD=<your_expo_password>" >> $FCI_BUILD_DIR/.env
 
       - name: Build iOS app
         script: |
